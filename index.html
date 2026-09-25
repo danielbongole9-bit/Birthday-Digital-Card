@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.07);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16p);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(244, 114, 182, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden font-sans">
+
+    <!-- Glowing Background Orbs -->
+    <div class="absolute top-5 left-5 w-48 h-48 md:w-72 md:h-72 bg-pink-600 rounded-full filter blur-[90px] md:blur-[120px] opacity-30 animate-pulse"></div>
+    <div class="absolute bottom-5 right-5 w-64 h-64 md:w-96 md:h-96 bg-purple-600 rounded-full filter blur-[100px] md:blur-[140px] opacity-25"></div>
+
+    <!-- Main Container -->
+    <div class="w-full max-w-md md:max-w-lg glass rounded-3xl p-6 md:p-8 text-center space-y-5 md:space-y-6 relative z-10 shadow-2xl">
+        
+        <!-- Header -->
+        <div class="inline-block px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs tracking-widest uppercase font-semibold">
+            Special Edition • 26.09
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white glow-text leading-tight">
+            Happy Birthday, <br class="sm:hidden" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Kijana! ✨</span>
+        </h1>
+
+        <!-- Custom Music Player Widget -->
+        <div class="glass p-3 rounded-2xl flex items-center space-x-4 border border-white/5">
+            <button onclick="toggleAudio()" id="playBtn" class="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg transform active:scale-95 transition">
+                ▶️
+            </button>
+            <div class="text-left flex-1">
+                <p class="text-xs text-pink-300 font-semibold">BACKGROUND MUSIC</p>
+                <p class="text-sm font-medium text-slate-200">Favorite Song.mp3</p>
+            </div>
+            <!-- Weka link ya wimbo wako hapa chini -->
+            <audio id="bgMusic" src="John Michael Howell _ ZVC - Disney Movie (Lyrics)(MP3_160K).mp3" loop></audio>
+        </div>
+
+        <!-- Typewriter Letter Area -->
+        <div class="bg-slate-900/60 p-5 rounded-2xl text-left border border-white/5 h-40 overflow-y-auto">
+            <p id="typedText" class="text-slate-300 text-sm leading-relaxed font-mono"></p>
+        </div>
+
+        <!-- Interactive Action Buttons -->
+        <div class="grid grid-cols-2 gap-4">
+            <button onclick="makeItRain()" class="bg-pink-500/20 hover:bg-pink-500/30 border border-pink-500/30 text-pink-300 font-semibold py-3 px-4 rounded-xl transition flex items-center justify-center space-x-2">
+                <span>🎉 Rain Confetti</span>
+            </button>
+            <button onclick="showSurprise()" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                <span>🎁 Deep Secret</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Audio Toggle
+        const audio = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('playBtn');
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerText = '⏸️';
+            } else {
+                audio.pause();
+                playBtn.innerText = '▶️';
+            }
+        }
+
+        // Typewriter Effect logic
+        const message = "Wishing you a very Happy Birthday! Here is to a fresh new page in your journey. True fulfillment comes when you choose your own peace and happiness above all else. Walk with confidence, value every single step you take, and stay fearless in chasing what your heart loves most. May your path ahead be blessed with longevity and great success! Enjoy your special day! 🥂✨";
+        let index = 0;
+        function typeWriter() {
+            if (index < message.length) {
+                document.getElementById("typedText").innerHTML += message.charAt(index);
+                index++;
+                setTimeout(typeWriter, 40);
+            }
+        }
+        window.onload = typeWriter;
+
+        // Confetti Effect
+        function makeItRain() {
+            confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { y: 0.6 }
+            });
+        }
+
+        // Surprise Modal Alert
+        function showSurprise() {
+            makeItRain();
+            alert("May this new chapter bring you peace, good health, and immense success in everything you do. Have a wonderful birthday! 🎉");
+        }
+    </script>
+</body>
+</html>
